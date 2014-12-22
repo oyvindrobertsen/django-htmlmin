@@ -6,6 +6,8 @@
 
 import re
 
+import six
+
 import bs4
 
 from .util import force_decode
@@ -40,7 +42,10 @@ def html_minify(html_code, ignore_comments=True, parser="html5lib"):
     if FOLD_DOCTYPE is True:
         # monkey patching to remove new line after doctype
         bs4.element.Doctype.SUFFIX = u'>'
-    return unicode(mini_soup)
+    if six.PY3:
+        return str(mini_soup)
+    else:
+        return unicode(mini_soup)
 
 def space_minify(soup, ignore_comments=True):
     """recursive function to reduce space characters in html code.
