@@ -7,7 +7,7 @@
 from setuptools import setup, find_packages
 from htmlmin import __version__
 
-README = open('README.rst').read()
+README = open('README.rst', encoding='utf-8').read()
 
 setup(
     name='django-htmlmin',
